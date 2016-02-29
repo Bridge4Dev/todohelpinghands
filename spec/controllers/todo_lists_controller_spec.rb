@@ -24,11 +24,11 @@ RSpec.describe TodoListsController, type: :controller do
   # TodoList. As you add validations to TodoList, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { title: "My title", description: "My description" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { title: "my", description: "desc" }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,15 @@ RSpec.describe TodoListsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { title: "New title", description: "New description" }
       }
 
       it "updates the requested todo_list" do
         todo_list = TodoList.create! valid_attributes
         put :update, {:id => todo_list.to_param, :todo_list => new_attributes}, valid_session
         todo_list.reload
-        skip("Add assertions for updated state")
+        expect(todo_list.title).to eq("New title")
+        expect(todo_list.description).to eq("New description")
       end
 
       it "assigns the requested todo_list as @todo_list" do
