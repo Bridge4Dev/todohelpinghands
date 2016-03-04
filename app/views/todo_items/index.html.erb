@@ -1,14 +1,29 @@
-<h1><%= @todo_list.title %></h1>
+<h1 class="title"><%= @todo_list.title %></h1>
 
 <table class="todo_items">
-  <% @todo_list.todo_items.each do |item| %>
-    <tr id="<%= dom_id(item) %>">
-      <td><%= item.content %></td>
-      <td><%= link_to "Mark Complete", complete_todo_list_todo_item_path(item), method: :patch %></td>      
-      <td><%= link_to "Edit", edit_todo_list_todo_item_path(item) %></td>
-      <td><%= link_to "Delete", todo_list_todo_item_path(item), method: :delete, data: { confirm: "Are you sure?"} %></td>
+  <thead>
+    <tr>
+      <th>Completed?</th>
+      <th>Content</th>
+      <th>Functions</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @todo_list.todo_items.each do |item| %>
+      <tr id="<%= dom_id(item) %>">
+        <td><%= item.content %></td>
+        <td>
+          <% if item.completed? %>
+            <%= item.completed_at %>
+          <% else %>
+            <%= link_to "Mark Complete", complete_todo_list_todo_item_path(item), method: :patch %>
+          <% end %>
+        </td>    
+        <td><%= link_to "Edit", edit_todo_list_todo_item_path(item) %></td>
+        <td><%= link_to "Delete", todo_list_todo_item_path(item), method: :delete, data: { confirm: "Are you sure?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <p><%= link_to "New Todo Item", new_todo_list_todo_item_path %></p>
