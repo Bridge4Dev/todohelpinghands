@@ -8,9 +8,4 @@ RSpec.describe "todo_lists/show", type: :view do
     ))
   end
 
-  it "renders attributes in <p>" do
-    render
-    expect(rendered).to match(/Title/)
-    expect(rendered).to match(/MyText/)
-  end
 end
