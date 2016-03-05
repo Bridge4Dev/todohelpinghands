@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Editing todo lists" do
 
   let!(:todo_list) { TodoList.create(title: "Groceries", description: "Grocery list") }
+  let(:user) { create(:user) }
 
   def update_todo_list(options={})
     options[:title] ||= "My todo list"
@@ -18,6 +19,10 @@ describe "Editing todo lists" do
     fill_in "Title", with: options[:title]
     fill_in "Description", with: options[:description]
     click_button "Update Todo list"
+  end
+
+  before do
+    sign_in user, password: "password"
   end
 
   it "updates a todo list successfully with correct information" do

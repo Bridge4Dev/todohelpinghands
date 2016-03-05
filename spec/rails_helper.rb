@@ -33,6 +33,9 @@ RSpec.configure do |config|
 
   config.include TodoListHelpers, type: :feature
   config.include RailsDomIdHelper, type: :feature
+  config.include FactoryGirl::Syntax::Methods
+  config.include AuthenticationHelpers::Controller, type: :controller
+  config.include AuthenticationHelpers::Feature, type: :feature
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

@@ -7,6 +7,7 @@ describe "Logging in" do
     fill_in "Email Address", with: "matt@website.com"
     fill_in "Password", with: "password"
     click_button "Log In"
+    
     expect(page).to have_content("Todo Lists")
     expect(page).to have_content("Thanks for logging in!")
   end
