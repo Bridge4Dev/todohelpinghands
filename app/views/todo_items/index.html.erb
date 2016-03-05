@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @todo_list.todo_items.each do |item| %>
-      <tr id="<%= dom_id(item) %>">
+      <tr class="todo_item" id="<%= dom_id(item) %>">
         <td><%= item.content %></td>
         <td>
           <% if item.completed? %>
